@@ -24,7 +24,7 @@ function App() {
   }, [])
   
   return (
-    <div className="mx-auto mt-5 border border-4 border-black bg-dark bg-opacity-50 rounded-4 p-2" style={{maxWidth: 410}}>
+    <div className="mx-auto border border-4 border-black bg-dark bg-opacity-50 rounded-4 p-2" style={{maxWidth: 410}}>
       <Routes>
         <Route path="/" element={<DoIncome />} />
         <Route path="/*" element={<NotFoundPage />} />
