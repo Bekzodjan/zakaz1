@@ -165,6 +165,9 @@ function DoExpence() {
             name="price"
             id="price"
             className="form-control mb-2"
+            onKeyUp={(e) => {
+              if (e.target.value < 1) e.target.value = "";
+            }}
             {...register("price")}
           />
         </label>
@@ -240,10 +243,10 @@ function DoExpence() {
                     Jami
                   </td>
                   <td className="text-center">
-                    {orders.reduce((sum, itm) => sum + itm.price, 0)}
+                    {orders.reduce((sum, itm) => sum + itm.count, 0)}
                   </td>
                   <td className="text-center">
-                    {orders.reduce((sum, itm) => sum + itm.count, 0)}
+                    {orders.reduce((sum, itm) => sum + itm.price, 0)}
                   </td>
                   <td className="text-center">
                     {orders.reduce(

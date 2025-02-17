@@ -60,10 +60,11 @@ function DoIncome() {
     if (!window.confirm("Haqiqatan ham ushbu buyurtmani o‘chirmoqchimisiz?"))
       return;
     console.log(selectedOrder);
-    
-    const updatedOrders = orders.filter((_, i) => { 
+
+    const updatedOrders = orders.filter((_, i) => {
       console.log(i);
-      return i != selectedOrder.i});
+      return i != selectedOrder.i;
+    });
     setOrders(updatedOrders);
     localStorage.setItem("orders", JSON.stringify(updatedOrders));
     setModalVisible(false);
@@ -71,11 +72,16 @@ function DoIncome() {
   };
 
   const calcIncome = (itm) => {
-    const totalExpense = itm.products.reduce(
-      (sum, p) => sum + p.price * p.count,
-      0
-    );
-    return itm.price * itm.count - totalExpense;
+    const totalExpense = itm.products.reduce((sum, p) => {
+      console.log("sum: " + sum);
+      console.log("p: " + p.price);
+      console.log("c: " + p.count);
+
+      console.log("s: " + (sum + p.price * p.count));
+
+      return sum + p.price * p.count;
+    }, 0);
+    return (itm.price - totalExpense) * itm.count;
   };
 
   function showProducts(itm) {
@@ -97,14 +103,14 @@ function DoIncome() {
       <form className="p-3 card shadow-lg" onSubmit={handleSubmit(addOrder)}>
         <h1 className="text-center">FMMebel</h1>
         <label className="mb-2 fs-5">
-          Ismi: 
-        <CreatableSelect
-          options={options}
-          isClearable
-          value={selectedOption}
-          onChange={createOption}
-          className="mb-3 border-black"
-        />
+          Ismi:
+          <CreatableSelect
+            options={options}
+            isClearable
+            value={selectedOption}
+            onChange={createOption}
+            className="mb-3 border-black"
+          />
         </label>
         <label className="mb-2 fs-5">
           Mahsulot narxi:
@@ -112,6 +118,9 @@ function DoIncome() {
             type="number"
             {...register("price")}
             className="form-control border-black mb-2"
+            onKeyUp={(e) => {
+              if (e.target.value < 1) e.target.value = "";
+            }}
           />
         </label>
         <label className="mb-2 fs-5">
@@ -249,6 +258,12 @@ function DoIncome() {
                 onClick={() => setModalVisible(false)}
               >
                 Yopish
+              </button>
+              <button
+                className="btn btn-warning"
+                onClick={() => navigate("/expence/" + selectedOrder.i)}
+              >
+                Chiqimlar
               </button>
               <button className="btn btn-danger" onClick={deleteOrder}>
                 O'chirish
