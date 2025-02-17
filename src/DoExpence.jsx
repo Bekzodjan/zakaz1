@@ -172,27 +172,29 @@ function DoExpence() {
           />
         </label>
 
-        <label className="mb-2 fs-5 w-50">
+        <label className="mb-2 fs-5 w-75">
           Soni:
           <div
-            style={{ width: "max-content !important" }}
+            style={{ width: "max-content !important", pointerEvents: "none" }}
             className="d-flex gap-2 w-100 align-items-center"
           >
-            <button
+            <div
               type="button"
+              style={{pointerEvents: "auto"}}
               onClick={() => setCount(count + 1)}
-              className="btn btn-success fs-1 w-25"
+              className="btn btn-success d-block fs-1 w-25"
             >
               +
-            </button>
+            </div>
             <h3 className="m-0">{count} kg, ta</h3>
-            <button
+            <div
               type="button"
+              style={{pointerEvents: "auto"}}
               onClick={() => count > 1 && setCount(count - 1)}
-              className="btn btn-danger fs-1 w-25"
+              className="btn btn-danger d-block fs-1 w-25"
             >
               -
-            </button>
+            </div>
           </div>
         </label>
 

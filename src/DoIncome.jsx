@@ -125,22 +125,27 @@ function DoIncome() {
         </label>
         <label className="mb-2 fs-5">
           Soni:
-          <div className="d-flex gap-2 align-items-center">
-            <button
+          <div
+            style={{ width: "max-content !important", pointerEvents: "none" }}
+            className="d-flex gap-2 w-75 align-items-center"
+          >
+            <div
               type="button"
+              style={{pointerEvents: "auto"}}
               onClick={() => setCount(count + 1)}
-              className="btn btn-success fs-3"
+              className="btn btn-success fs-1 w-25"
             >
               +
-            </button>
-            <h3 className="m-0">{count}</h3>
-            <button
+            </div>
+            <h1 className="m-0">{count}</h1>
+            <div
               type="button"
+              style={{pointerEvents: "auto"}}
               onClick={() => count > 1 && setCount(count - 1)}
-              className="btn btn-danger fs-3"
+              className="btn btn-danger fs-1 w-25"
             >
               -
-            </button>
+            </div>
           </div>
         </label>
         <button className="btn btn-success w-100">Tasdiqlash</button>
